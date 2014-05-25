@@ -56,15 +56,19 @@ public class EnemyBehavior : MonoBehaviour {
 		}
 		if (gameObject.tag == "poop") {
 			Debug.Log ("SOIFHLSKDHLSKDHGLSIURFHLWIEUTHLWIEUHLSDHG");
+			burnTimer += Time.deltaTime;
+
+			if (burnTimer >= 2.0f)
+			{
+
+				
+				GameObject.Destroy(GameObject.Find ("Logs_Fire_Anim_0"));
+				
+				
+			}
 				}
 
-		if (burnTimer >= 2.0f)
-		{
-			Instantiate(LOGOB, GameObject.Find ("Logs_Fire_Anim_0").transform.position, Quaternion.identity);
-			GameObject.Destroy(GameObject.Find ("Logs_Fire_Anim_0"));
 
-
-		}
 
 
 		//Debug.Log (trueA.x);
@@ -158,9 +162,8 @@ public class EnemyBehavior : MonoBehaviour {
 		//if attacked by projectile
 		if (collision.gameObject.tag == "fire" ) 
 		{
-			isBurning = true;
 			//Play animation of death
-			if(gameObject.name == "logs"){
+			if(gameObject.name == "logs" && !isBurning){
 				Debug.Log ("BURNING");
 				Instantiate(LOGOB, GameObject.Find ("logs").transform.position, Quaternion.identity);
 				isBurning = true;

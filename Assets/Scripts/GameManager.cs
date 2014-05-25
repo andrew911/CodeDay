@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		PlayerAttributes.setHealth (3);
 	}
 	
 	// Update is called once per frame
