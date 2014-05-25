@@ -8,7 +8,7 @@ public class CharacterController : MonoBehaviour
 		public float speed;	
 		public float jumpVal;
 		public float dblVal;
-		
+	
 		//Internal variables
 		private bool doubleJump;
 		private bool isJumping;
@@ -17,6 +17,9 @@ public class CharacterController : MonoBehaviour
 		private Ray ray;	//Raycast used for checking if grounded
 
 		private float timer;
+
+
+		public GameObject throwIt;
 		
 		//private float distance = -1;
 
@@ -38,6 +41,7 @@ public class CharacterController : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+
 			timer += Time.deltaTime;
 			isGrounded ();
 
@@ -95,6 +99,15 @@ public class CharacterController : MonoBehaviour
 				PlayerAttributes.chain.switchToFront();
 			}
 
+			if (Input.GetKeyDown(KeyCode.F))
+			{
+//				Pet temp;
+//				temp = PlayerAttributes.chain.removeFromChain();
+//
+//				//throwIt.rigidbody2D.AddForce(500, 500);
+//				temp.setDiscarded (true);
+			}
+
 			if (timer >= 0.3f)
 			{
 				isIdle = true;
@@ -103,8 +116,8 @@ public class CharacterController : MonoBehaviour
 
 			PlayerAttributes.setPosition(gameObject.transform.position);
 		}
-
-		public bool  isGrounded ()
+		
+		public bool isGrounded ()
 		{
 		Debug.DrawRay ( new Vector2(transform.position.x, transform.position.y - 1.49f), -Vector2.up * 0.25f, Color.blue, 0.05f);
 

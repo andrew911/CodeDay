@@ -9,6 +9,7 @@ public class Pet //: MonoBehaviour
 	int petID;
 	Vector3 position;
 	Direction direction;
+	bool discarded;
 
 	/*
 	 * start constructors
@@ -58,6 +59,11 @@ public class Pet //: MonoBehaviour
 		return direction;
 	}
 
+	public bool isDiscarded()
+	{
+		return discarded;
+	}
+
 	/*
 	 * End getter methods
 	 */
@@ -75,6 +81,11 @@ public class Pet //: MonoBehaviour
 	public void setDirection(Direction x)
 	{
 		direction = x;
+	}
+
+	public void setDiscarded(bool t)
+	{
+		discarded = t;
 	}
 
 	/*

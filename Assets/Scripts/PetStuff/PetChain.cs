@@ -27,7 +27,6 @@ public class PetChain //: MonoBehaviour
 	public void switchToFront()
 	{
 		Pet temp;
-		int i;
 
 		temp = chain[front - 1];
 		chain[front - 1] = chain[selectedPet];
@@ -52,7 +51,7 @@ public class PetChain //: MonoBehaviour
 		return null;
 	}
 
-	public Pet removeSelection()
+	/*public Pet removeSelection()
 	{
 		Pet temp = new Pet();
 
@@ -60,7 +59,7 @@ public class PetChain //: MonoBehaviour
 		chain.RemoveAt(selectedPet);
 		LayerStack.revoke();
 		return temp;
-	}
+	}*/
 
 	public Pet elementAt(int i)
 	{

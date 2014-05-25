@@ -13,8 +13,11 @@ public class PetController : MonoBehaviour
 	private Quaternion movingLeft;
 
 	bool isJumping;
-	Pet currPet;
+	public Pet currPet;
 	float timer;
+	int petID;
+
+	public bool isFront = false;
 
 	static int numPets = 0;
 
@@ -59,10 +62,12 @@ public class PetController : MonoBehaviour
 			currPet = new Pet(numPets, PetType.generic);
 		}
 
+		petID = numPets;
 		print ("curr num pets: " + numPets);
 		numPets++;
 		jumpVal = 20;
 		gameObject.layer = LayerStack.assign();
+		PlayerAttributes.chain.addToChain(currPet);
 	}
 	
 	// Update is called once per frame
@@ -71,6 +76,16 @@ public class PetController : MonoBehaviour
 		Vector3 dist;
 		dist = PlayerAttributes.chain.nextInLineDist(currPet);
 		timer += Time.deltaTime;
+
+		if (currPet.isDiscarded() && currPet.getType() != PetType.generic)
+		{
+			Destroy(gameObject);
+		}
+		else if (currPet.isDiscarded() && currPet.getType() == PetType.generic)
+		{
+			PlayerAttributes.chain.addToChain(currPet);
+			currPet.setDiscarded(false);
+		}
 
 		if (dist.x < 0)
 		{
@@ -144,11 +159,11 @@ public class PetController : MonoBehaviour
 		{
 			isJumping = false;
 		}
-
-		if (Input.GetKeyDown(KeyCode.O))
+		
+		/*if (Input.GetKeyDown(KeyCode.O))
 		{
 			PlayerAttributes.chain.addToChain(currPet);
-		}
+		}*/
 
 		currPet.setPosition(gameObject.transform.position);
 	}
