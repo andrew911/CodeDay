@@ -24,6 +24,17 @@ public class PetChain //: MonoBehaviour
 		return false;
 	}
 
+	public void switchToFront()
+	{
+		Pet temp;
+		int i;
+
+		temp = chain[front - 1];
+		chain[front - 1] = chain[selectedPet];
+		chain[selectedPet] = temp;
+		//Debug.Log("switch should have occured");
+	}
+
 	public Pet removeFromChain()
 	{
 		Pet temp = new Pet();
@@ -62,7 +73,7 @@ public class PetChain //: MonoBehaviour
 		{
 			if (chain[i].getPetID() == petID)
 			{
-				Debug.Log ("pet found at: " + i);
+				//Debug.Log ("pet found at: " + i);
 				return i;
 			}
 		}

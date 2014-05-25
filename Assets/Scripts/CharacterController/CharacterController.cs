@@ -17,7 +17,6 @@ public class CharacterController : MonoBehaviour
 		private Ray ray;	//Raycast used for checking if grounded
 
 		private float timer;
-		private float selectTimer;
 		
 		//private float distance = -1;
 
@@ -40,7 +39,6 @@ public class CharacterController : MonoBehaviour
 		void Update ()
 		{
 			timer += Time.deltaTime;
-			selectTimer += Time.deltaTime;
 			isGrounded ();
 
 			//This is the input code for character movement
@@ -88,15 +86,13 @@ public class CharacterController : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.Q))
 			{
 				PlayerAttributes.chain.downSelection();
-				if (Input.GetKeyUp (KeyCode.A))
-			    {
-					
-				}
+				PlayerAttributes.chain.switchToFront();
 			}
 
 			if (Input.GetKeyDown(KeyCode.E))
 			{
 				PlayerAttributes.chain.upSelection();
+				PlayerAttributes.chain.switchToFront();
 			}
 
 			if (timer >= 0.3f)
