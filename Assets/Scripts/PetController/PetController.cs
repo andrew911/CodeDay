@@ -28,16 +28,17 @@ public class PetController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Mathf.Abs(PlayerAttributes.chain.nextInLineDist(currPet).x) > MAX_DISTANCE_FROM_PLAYER) 
+		Vector3 dist;
+		dist = PlayerAttributes.chain.nextInLineDist(currPet);
+
+		if (dist.x > MAX_DISTANCE_FROM_PLAYER) 
 		{	
-			if (PlayerAttributes.getDirection() == Direction.right)
-			{
-				gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
-			}
-			else
-			{
-				gameObject.transform.Translate(new Vector3(-0.1f - speed, 0.0f));
-			}
+			gameObject.transform.Translate(new Vector3(-0.1f - speed, 0.0f));
+		}
+
+		if (dist.x < -MAX_DISTANCE_FROM_PLAYER)
+		{
+			gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
 		}
 
 		if (Input.GetKeyDown(KeyCode.O))
