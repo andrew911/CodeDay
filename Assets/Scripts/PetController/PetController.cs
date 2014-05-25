@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PetController : MonoBehaviour
 {
+	const float MAX_DISTANCE_FROM_PLAYER = 5;
+
 	public float speed;	
 	public float jumpVal;
 
@@ -26,37 +28,24 @@ public class PetController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (PlayerAttributes.getDirection () == Direction.right && PlayerAttributes.isMoving ()) 
-		{
-			gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
-		}
-
-		if (PlayerAttributes.getDirection () == Direction.left && PlayerAttributes.isMoving ()) 
-		{
-			gameObject.transform.Translate(new Vector3(-0.1f - speed, 0.0f));
+		if (Mathf.Abs(PlayerAttributes.chain.nextInLineDist(currPet).x) > MAX_DISTANCE_FROM_PLAYER) 
+		{	
+			if (PlayerAttributes.getDirection() == Direction.right)
+			{
+				gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
+			}
+			else
+			{
+				gameObject.transform.Translate(new Vector3(-0.1f - speed, 0.0f));
+			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.O))
 		{
-			PlayerAttributes.chain.addToChain (currPet);
+			PlayerAttributes.chain.addToChain(currPet);
 		}
 
-		if (Input.GetKeyDown (KeyCode.P))
-		{
-			PlayerAttributes.chain.printChain();
-		}
-
-		if (Input.GetKeyDown (KeyCode.L))
-		{
-			PlayerAttributes.chain.upSelection ();
-			print (PlayerAttributes.chain.selectedPet);
-		}
-
-		if (Input.GetKeyDown (KeyCode.K))
-		{
-			PlayerAttributes.chain.downSelection ();
-			print (PlayerAttributes.chain.selectedPet);
-		}
+		currPet.setPosition(gameObject.transform.position);
 	}
 }
 

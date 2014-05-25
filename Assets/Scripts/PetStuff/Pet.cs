@@ -61,6 +61,11 @@ public class Pet //: MonoBehaviour
 	 * Start setter methods
 	 */
 
+	public void setPosition(Vector3 x)
+	{
+		position = x;
+	}
+
 	/*
 	 * End setter methods
 	 */ 

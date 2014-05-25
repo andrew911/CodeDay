@@ -10,6 +10,7 @@ public static class PlayerAttributes
 	static Speed playerSpeed;
 	static Vector3 position;
 	static bool moving;
+	static bool idling;
 	public static PetChain chain = new PetChain();
 
 	/*
@@ -34,6 +35,11 @@ public static class PlayerAttributes
 	public static void setMoving(bool x)
 	{
 		moving = x;
+	}
+
+	public static void setIdling(bool x)
+	{
+		idling = x;
 	}
 
 	/*
@@ -64,6 +70,11 @@ public static class PlayerAttributes
 	public static Vector3 getPosition()
 	{
 		return position;
+	}
+
+	public static bool isIdling()
+	{
+		return idling;
 	}
 
 	/*

@@ -8,40 +8,19 @@ public class ChainTest : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		int j = 6;
 		for (int i = 0; i < 6; i++)
 		{
-			test.addToChain (new Pet(i));
-			print("front is " + test.getFrontVal ());
+			test.addToChain (new Pet(j));
+			j--;
 		}
 
-		for (int i = 0; i < 6; i++)
-		{
-			print ("index " + i + ", pet " + test.elementAt(i).getPetID() + " front is " + test.getFrontVal());
-		}
-
-		//going to try to add another pet, should fail
-		test.addToChain (new Pet(7));
-		for (int i = 0; i < 120; i++)
-		{
-			test.addToChain (new Pet());
-		}
-
-		for (int i = 0; i < 6; i++)
-		{
-			print ("index " + i + ", pet " + test.elementAt(i).getPetID() + " front is " + test.getFrontVal());
-		}
-
-		print("Pet " + test.removeFromChain().getPetID() + " removed, front is now " + test.getFrontVal());
-
-		for (int i = 0; i < 120; i++)
-		{
-			test.removeFromChain ();
-		}
+		test.printChain ();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		test.findPet (2);
 	}
 }
