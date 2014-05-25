@@ -136,9 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1290600b51cad442a98cf7f7ded1c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burnTimer: 0
   pointA: {fileID: 100000}
   pointB: {fileID: 100002}
+  fireDrop: {fileID: 100000, guid: cf8c4f481eb2f9b4e94d49f162ab93fb, type: 2}
   speed: 0
+  LOGOB: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

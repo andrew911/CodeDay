@@ -9,6 +9,10 @@ public class EnemyBehavior : MonoBehaviour {
 	private bool grounded = true;
 	private bool isWalking = false;
 
+	private bool isBurning;
+
+	public float burnTimer;
+
 	private float timer;
 	private float waitTime = 2.5f;
 
@@ -17,11 +21,15 @@ public class EnemyBehavior : MonoBehaviour {
 	public GameObject pointA;
 	public GameObject pointB;
 
+	public GameObject fireDrop;
+
 	//Stores true coord's 
 	private Vector2 trueB;
 	private Vector2 trueA;
 
 	public float speed;
+
+	public GameObject LOGOB;
 
 	Vector2 objPoint;
 
@@ -40,7 +48,30 @@ public class EnemyBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log (trueA.x);
+
+		//BURN CODE IS SLOPPY
+		if (gameObject.name == "Logs_Fire_Anim_0") 
+		{
+			burnTimer += Time.deltaTime;
+		}
+		if (gameObject.tag == "poop") {
+			Debug.Log ("SOIFHLSKDHLSKDHGLSIURFHLWIEUTHLWIEUHLSDHG");
+			burnTimer += Time.deltaTime;
+
+			if (burnTimer >= 2.0f)
+			{
+
+				
+				GameObject.Destroy(GameObject.Find ("Logs_Fire_Anim_0"));
+				
+				
+			}
+				}
+
+
+
+
+		//Debug.Log (trueA.x);
 		//Handles enemy paths
 		if (!isWalking) 
 		{
@@ -110,10 +141,8 @@ public class EnemyBehavior : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision){
 
-		Debug.Log ("IN");
-		if (collision.gameObject.tag != "ground" && collision.gameObject.tag != "pet") 
+		if (collision.gameObject.tag != "ground") 
 		{
-			Debug.Log ("OUT");
 			isWalking = false;
 			if(spot == 1)
 			{
@@ -128,11 +157,36 @@ public class EnemyBehavior : MonoBehaviour {
 		{
 			PlayerAttributes.setHealth((PlayerAttributes.getHealth()) - 1);
 		}
+
+
+		//if attacked by projectile
+		if (collision.gameObject.tag == "fire" ) 
+		{
+			//Play animation of death
+			if(gameObject.name == "logs" && !isBurning){
+				Debug.Log ("BURNING");
+				Instantiate(LOGOB, GameObject.Find ("logs").transform.position, Quaternion.identity);
+				isBurning = true;
+				GameObject.Destroy(GameObject.Find("logs"));
+				GameObject.Find ("Logs_Fire_Anim_0").GetComponent<Animator>().enabled = true;
+
+			}
+
+			   GameObject.Destroy(gameObject);
+		}
+
+		if (collision.gameObject.tag == "generic" && gameObject.name == "fireBad") 
+		{
+			Instantiate(fireDrop, gameObject.transform.position, Quaternion.identity);
+			//PlayerAttributes.chain.addToChain(fireDrop.GetComponent<PetController>().currPet);
+			//Instantiate(LOGOB, GameObject.Find ("Logs_Fire_Anim_0").transform.position, Quaternion.identity);
+			GameObject.Destroy(gameObject);
+		}
 	}
 
 	public bool  isGrounded ()
 	{
-		Debug.DrawRay ( new Vector2(transform.position.x, transform.position.y - 0.9f), -Vector2.up * 0.25f, Color.blue, 0.05f);
+		//Debug.DrawRay ( new Vector2(transform.position.x, transform.position.y - 0.9f), -Vector2.up * 0.25f, Color.blue, 0.05f);
 		
 		RaycastHit2D hit = Physics2D.Raycast (new Vector2(transform.position.x, transform.position.y - 0.9f), -Vector2.up, 0.25f);
 		

@@ -67,9 +67,13 @@ public class PetController : MonoBehaviour
 		numPets++;
 		jumpVal = 20;
 		gameObject.layer = LayerStack.assign();
+<<<<<<< HEAD
 		PlayerAttributes.chain.addToChain(currPet);
+=======
+		PlayerAttributes.chain.addToChain (currPet);
+>>>>>>> 34183e1da1936833e16a433d0f9313ac289c87bc
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
