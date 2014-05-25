@@ -17,11 +17,17 @@ public class CharacterController : MonoBehaviour
 		
 		//private float distance = -1;
 
+		//Made to force animation to look like it's moving left or right
+		private Quaternion movingRight;
+		private Quaternion movingLeft;
+
 		// Use this for initialization
 		void Start ()
 		{
 			isJumping = false;
 			doubleJump = false;
+			movingRight.y = 0.0f;
+			movingLeft.y = 180.0f;
 			isGrounded ();
 		}
 	
@@ -36,12 +42,23 @@ public class CharacterController : MonoBehaviour
 				gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
 				PlayerAttributes.setDirection (Direction.right);
 				PlayerAttributes.setMoving (true);
+				movingRight = gameObject.transform.localRotation;
+				movingRight.y = 0.0f;
+				gameObject.transform.rotation = movingRight;
+				animation.Play ();
 			}
 			if (Input.GetKey (KeyCode.A)) 
 			{
-				gameObject.transform.Translate(new Vector3(-0.1f - speed, 0.0f));
+
+				movingLeft = gameObject.transform.localRotation;
+				movingLeft.y = 180.0f;
+				gameObject.transform.rotation = movingLeft;
+
+				gameObject.transform.Translate(new Vector3(0.1f - speed, 0.0f));
 				PlayerAttributes.setDirection(Direction.left);
 				PlayerAttributes.setMoving (true);
+				animation.Play();
+				
 			}
 			if (Input.GetKeyDown (KeyCode.Space) && !isJumping && grounded) 
 			{
