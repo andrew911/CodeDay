@@ -32,7 +32,7 @@ public class PetChain //: MonoBehaviour
 		temp = chain[front - 1];
 		chain[front - 1] = chain[selectedPet];
 		chain[selectedPet] = temp;
-		Debug.Log("switch should have occured");
+		//Debug.Log("switch should have occured");
 	}
 
 	public Pet removeFromChain()
@@ -78,7 +78,7 @@ public class PetChain //: MonoBehaviour
 			}
 		}
 		
-		//Debug.Log ("pet not found :(");
+		Debug.Log ("pet not found :(");
 		return -1;
 	}
 
