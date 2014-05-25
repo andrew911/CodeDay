@@ -33,6 +33,7 @@ public class PetChain //: MonoBehaviour
 			temp = chain[front - 1];
 			chain.RemoveAt(front - 1);
 			front--;
+			LayerStack.revoke();
 			return temp;
 		}
 
@@ -46,6 +47,7 @@ public class PetChain //: MonoBehaviour
 
 		temp = chain[selectedPet];
 		chain.RemoveAt(selectedPet);
+		LayerStack.revoke();
 		return temp;
 	}
 

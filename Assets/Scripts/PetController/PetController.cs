@@ -44,6 +44,7 @@ public class PetController : MonoBehaviour
 		print ("curr num pets: " + numPets);
 		numPets++;
 		jumpVal = 20;
+		gameObject.layer = LayerStack.assign();
 	}
 	
 	// Update is called once per frame

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum PetType {generic, fire, waterOrIce, earth};
+public enum PetType {generic, fire, water, earth};
 
 public class Pet //: MonoBehaviour 
 {
