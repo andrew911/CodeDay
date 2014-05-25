@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PetController : MonoBehaviour
 {
-	const float MAX_DISTANCE_FROM_PLAYER = 5.0f;
-	const float CATCH_UP_DISTANCE = 8.0f;
+	const float MAX_DISTANCE_FROM_PLAYER = 2.5f;
+	const float CATCH_UP_DISTANCE = 5.0f;
 
 	public float speed;	
 	public float jumpVal;
@@ -19,13 +19,31 @@ public class PetController : MonoBehaviour
 		PlayerAttributes.chain.addToChain (currPet);
 	}
 
+	public bool  isGrounded ()
+	{
+		Debug.DrawRay ( new Vector2(transform.position.x, transform.position.y - 1.49f), -Vector2.up * 0.25f, Color.blue, 0.05f);
+		
+		RaycastHit2D hit = Physics2D.Raycast (new Vector2(transform.position.x, transform.position.y - 1.49f), -Vector2.up, 0.25f);
+		
+		if(hit.collider != null)
+		{
+			if (hit.collider.gameObject.tag == "ground") 
+			{
+				return true;
+			}
+		}
+		
+		//Debug.Log (grounded);
+		return false;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
 		currPet = new Pet(numPets);
 		print ("curr num pets: " + numPets);
 		numPets++;
-		jumpVal = 450;
+		jumpVal = 20;
 	}
 	
 	// Update is called once per frame
@@ -49,12 +67,12 @@ public class PetController : MonoBehaviour
 		{	
 			if (dist.x > CATCH_UP_DISTANCE)
 			{
-				gameObject.transform.Translate(new Vector3(-0.3f - speed, 0.0f));
+				gameObject.transform.Translate(new Vector3(-0.13f - speed, 0.0f));
 
-				if (dist.y < 0 /*&& isJumping == false*/)
+				if (dist.y < 0 && isJumping == false)
 				{
 					gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 0.5f + jumpVal));
-					//isJumping = true;
+					isJumping = true;
 				}
 			}
 			else
@@ -67,12 +85,12 @@ public class PetController : MonoBehaviour
 		{
 			if (dist.x < -CATCH_UP_DISTANCE)
 			{
-				gameObject.transform.Translate(new Vector3(0.3f + speed, 0.0f));
+				gameObject.transform.Translate(new Vector3(0.13f + speed, 0.0f));
 
-				if (dist.y < 0 /*&& isJumping == false*/)
+				if (dist.y < 0 && isJumping == false)
 				{
 					gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 0.5f + jumpVal));
-					//isJumping = true;
+					isJumping = true;
 				}
 			}
 
@@ -80,6 +98,11 @@ public class PetController : MonoBehaviour
 			{
 				gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
 			}
+		}
+
+		if(isGrounded())
+		{
+			isJumping = false;
 		}
 
 		if (Input.GetKeyDown(KeyCode.O))
