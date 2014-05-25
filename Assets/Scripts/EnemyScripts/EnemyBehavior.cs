@@ -12,7 +12,7 @@ public class EnemyBehavior : MonoBehaviour {
 	private float timer;
 	private float waitTime = 2.5f;
 
-	private int spot = 2; //if spot is at 1 go to point B if spot is at 2 go to point A
+	private int spot = 1; //if spot is at 1 go to point B if spot is at 2 go to point A
 
 	public GameObject pointA;
 	public GameObject pointB;
@@ -25,6 +25,10 @@ public class EnemyBehavior : MonoBehaviour {
 
 	Vector2 objPoint;
 
+	//Made to force animation to look like it's moving left or right
+	private Quaternion movingRight;
+	private Quaternion movingLeft;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -36,6 +40,7 @@ public class EnemyBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		Debug.Log (trueA.x);
 		//Handles enemy paths
 		if (!isWalking) 
 		{
@@ -56,22 +61,49 @@ public class EnemyBehavior : MonoBehaviour {
 	void moveEnemy()
 	{
 
+
+		//*******************************************
+		//****THE LOGIC IS SKEWED. TRUST NOTHING*****
+		//*******************************************
+
 		if (spot == 1) 
 		{
-			this.gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
-			if(this.gameObject.transform.position.x >= objPoint.x){
+			gameObject.GetComponent<Animator>().enabled = true;
+			movingRight = gameObject.transform.localRotation;
+			movingRight.y = 180.0f;
+			gameObject.transform.rotation = movingRight;
+
+			this.gameObject.transform.Translate(new Vector3(-0.1f + speed, 0.0f));
+
+			if(this.gameObject.transform.position.x >= trueB.x){
+				gameObject.GetComponent<Animator>().enabled = false;
 				isWalking = false;
 				spot = 2;
 				objPoint.x = trueA.x;
+
+				movingLeft = gameObject.transform.localRotation;
+				movingLeft.y = 180.0f;
+				gameObject.transform.rotation = movingLeft;
 			}
 		}
 		if (spot == 2) 
 		{
-			this.gameObject.transform.Translate(new Vector3(-0.1f + speed, 0.0f));
-			if(this.gameObject.transform.position.x <= objPoint.x){
+			gameObject.GetComponent<Animator>().enabled = true;
+			movingLeft = gameObject.transform.localRotation;
+			movingLeft.y = 0.0f;
+			gameObject.transform.rotation = movingLeft;
+
+			this.gameObject.transform.Translate(new Vector3(-0.1f - speed, 0.0f));
+
+			if(this.gameObject.transform.position.x <= trueA.x){
+				gameObject.GetComponent<Animator>().enabled = false;
 				isWalking = false;
 				spot = 1;
 				objPoint.x = trueB.x;
+
+				movingRight = gameObject.transform.localRotation;
+				movingRight.y = 0.0f;
+				gameObject.transform.rotation = movingRight;
 			}
 		}
 	}
