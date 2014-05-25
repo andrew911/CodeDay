@@ -42,7 +42,7 @@ public class Pet //: MonoBehaviour
 		return type;
 	}
 
-	public int getpetID()
+	public int getPetID()
 	{
 		return petID;
 	}

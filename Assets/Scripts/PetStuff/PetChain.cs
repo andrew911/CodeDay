@@ -54,6 +54,21 @@ public class PetChain //: MonoBehaviour
 		return chain[i];
 	}
 
+	public int findPet(int petID)
+	{
+		for (int i = 0; i < front; i++)
+		{
+			if (chain[i].getPetID() == petID)
+			{
+				Debug.Log ("pet found at: " + i);
+				return i;
+			}
+		}
+		
+		Debug.Log ("pet not found :(");
+		return -1;
+	}
+
 	public int getFrontVal()
 	{
 		return front;
@@ -88,7 +103,7 @@ public class PetChain //: MonoBehaviour
 	public Vector3 nextInLineDist(Pet curr)
 	{
 		int i;
-		i = findPet(curr);
+		i = findPet(curr.getPetID());
 		
 		if (i == front - 1)
 		{

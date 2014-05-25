@@ -61,7 +61,7 @@ public static class PlayerAttributes
 		return moving;
 	}
 
-	public static Vector2 getPosition()
+	public static Vector3 getPosition()
 	{
 		return position;
 	}
