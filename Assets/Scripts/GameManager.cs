@@ -13,5 +13,10 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Debug.Log (PlayerAttributes.getHealth ());
+
+
+		if (PlayerAttributes.getHealth () <= 0) {
+			Debug.Log ("YOU LOSE");
+				}
 	}
 }

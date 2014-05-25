@@ -13,7 +13,7 @@ public class PetController : MonoBehaviour
 	private Quaternion movingLeft;
 
 	bool isJumping;
-	Pet currPet;
+	public Pet currPet;
 	float timer;
 
 	static int numPets = 0;
@@ -63,8 +63,9 @@ public class PetController : MonoBehaviour
 		numPets++;
 		jumpVal = 20;
 		gameObject.layer = LayerStack.assign();
+		PlayerAttributes.chain.addToChain (currPet);
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
