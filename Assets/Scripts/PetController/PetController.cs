@@ -9,8 +9,12 @@ public class PetController : MonoBehaviour
 	public float speed;	
 	public float jumpVal;
 
+	private Quaternion movingRight;
+	private Quaternion movingLeft;
+
 	bool isJumping;
 	Pet currPet;
+	float timer;
 
 	static int numPets = 0;
 
@@ -40,7 +44,21 @@ public class PetController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		currPet = new Pet(numPets);
+		if (gameObject.tag == "fire")
+		{
+			currPet = new Pet(numPets, PetType.fire);
+		}
+
+		else if (gameObject.tag == "water")
+		{
+			currPet = new Pet(numPets, PetType.water);
+		}
+
+		else
+		{
+			currPet = new Pet(numPets, PetType.generic);
+		}
+
 		print ("curr num pets: " + numPets);
 		numPets++;
 		jumpVal = 20;
@@ -52,6 +70,7 @@ public class PetController : MonoBehaviour
 	{
 		Vector3 dist;
 		dist = PlayerAttributes.chain.nextInLineDist(currPet);
+		timer += Time.deltaTime;
 
 		if (dist.x < 0)
 		{
@@ -68,7 +87,12 @@ public class PetController : MonoBehaviour
 		{	
 			if (dist.x > CATCH_UP_DISTANCE)
 			{
-				gameObject.transform.Translate(new Vector3(-0.13f - speed, 0.0f));
+				movingLeft = gameObject.transform.localRotation;
+				movingLeft.y = 180.0f;
+				gameObject.transform.rotation = movingLeft;
+				gameObject.GetComponent<Animator>().enabled = true;
+
+				gameObject.transform.Translate(new Vector3(0.13f + speed, 0.0f));
 
 				if (dist.y < 0 && isJumping == false)
 				{
@@ -78,7 +102,12 @@ public class PetController : MonoBehaviour
 			}
 			else
 			{
-				gameObject.transform.Translate(new Vector3(-0.1f - speed, 0.0f));
+				movingLeft = gameObject.transform.localRotation;
+				movingLeft.y = 180.0f;
+				gameObject.transform.rotation = movingLeft;
+				gameObject.GetComponent<Animator>().enabled = true;
+
+				gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
 			}
 		}
 
@@ -86,6 +115,11 @@ public class PetController : MonoBehaviour
 		{
 			if (dist.x < -CATCH_UP_DISTANCE)
 			{
+				movingRight = gameObject.transform.localRotation;
+				movingRight.y = 0.0f;
+				gameObject.transform.rotation = movingRight;
+				gameObject.GetComponent<Animator>().enabled = true;
+
 				gameObject.transform.Translate(new Vector3(0.13f + speed, 0.0f));
 
 				if (dist.y < 0 && isJumping == false)
@@ -97,6 +131,11 @@ public class PetController : MonoBehaviour
 
 			else
 			{
+				movingRight = gameObject.transform.localRotation;
+				movingRight.y = 0.0f;
+				gameObject.transform.rotation = movingRight;
+				gameObject.GetComponent<Animator>().enabled = true;
+
 				gameObject.transform.Translate(new Vector3(0.1f + speed, 0.0f));
 			}
 		}
