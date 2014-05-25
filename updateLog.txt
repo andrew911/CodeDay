@@ -1,0 +1,14 @@
+ - 1:17 pm
+
+renamed "cube" to "ground"
+
+- 1:19 pm
+
+Created folder "Scripts" inside the assets folder
+Created folder "CharacterController" inside "Scripts" folder
+Created folder "PetController" inside "Scripts" folder
+
+Created script "CharacterController.cs" inside CharacterController folder..
+	this script will attach to the player object.
+
+
