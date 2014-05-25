@@ -1,0 +1,15 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: Princess_Anim.png (140 x 1552)
+# $TexturePacker:SmartUpdate:9360c0bec812e0ca929fab9d75a1d9af:537c2596270aef24f68c666a084feca2:3efdf5e5a0a043410327c9851e8f2809$
+#
+
+princess_idle0;2;2;135;308;0.5;0.5
+princess_walking0;2;312;135;308;0.5;0.5
+princess_walking1;2;622;135;308;0.5;0.5
+princess_walking2;2;932;135;308;0.5;0.5
+princess_walking3;2;1242;135;308;0.5;0.5
