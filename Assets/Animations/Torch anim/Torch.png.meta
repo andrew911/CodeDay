@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c61ed911e4f56c4bb2a689e22771695
+guid: a3f677651f001934e90cf23c866d69d5
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -45,58 +45,31 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: Orbs_Walking_0
+    - name: Torch_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 2
-        width: 59
-        height: 83
+        x: 0
+        y: 975
+        width: 180
+        height: 485
       alignment: 0
       pivot: {x: .5, y: .5}
-    - name: Orbs_Walking_1
+    - name: Torch_1
       rect:
         serializedVersion: 2
-        x: 74
+        x: 0
+        y: 489
+        width: 180
+        height: 486
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Torch_2
+      rect:
+        serializedVersion: 2
+        x: 1
         y: 3
-        width: 59
-        height: 82
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: Orbs_Walking_2
-      rect:
-        serializedVersion: 2
-        x: 143
-        y: 2
-        width: 62
-        height: 82
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: Orbs_Walking_3
-      rect:
-        serializedVersion: 2
-        x: 206
-        y: 2
-        width: 66
-        height: 85
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: Orbs_Walking_4
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 2
-        width: 65
-        height: 85
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: Orbs_Walking_5
-      rect:
-        serializedVersion: 2
-        x: 342
-        y: 1
-        width: 66
-        height: 86
+        width: 177
+        height: 481
       alignment: 0
       pivot: {x: .5, y: .5}
   spritePackingTag: 
