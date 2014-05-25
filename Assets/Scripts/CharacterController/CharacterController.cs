@@ -13,7 +13,10 @@ public class CharacterController : MonoBehaviour
 		private bool doubleJump;
 		private bool isJumping;
 		private bool grounded = true;
+		private bool isIdle;
 		private Ray ray;	//Raycast used for checking if grounded
+
+		private float timer;
 		
 		//private float distance = -1;
 
@@ -34,6 +37,7 @@ public class CharacterController : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+			timer += Time.deltaTime;
 			isGrounded ();
 
 			//This is the input code for character movement
@@ -45,7 +49,8 @@ public class CharacterController : MonoBehaviour
 				movingRight = gameObject.transform.localRotation;
 				movingRight.y = 0.0f;
 				gameObject.transform.rotation = movingRight;
-				animation.Play ();
+				gameObject.GetComponent<Animator>().enabled = true;
+				timer = 0;
 			}
 			if (Input.GetKey (KeyCode.A)) 
 			{
@@ -57,7 +62,8 @@ public class CharacterController : MonoBehaviour
 				gameObject.transform.Translate(new Vector3(0.1f - speed, 0.0f));
 				PlayerAttributes.setDirection(Direction.left);
 				PlayerAttributes.setMoving (true);
-				animation.Play();
+				gameObject.GetComponent<Animator>().enabled = true;
+				timer = 0;
 				
 			}
 			if (Input.GetKeyDown (KeyCode.Space) && !isJumping && grounded) 
@@ -75,15 +81,20 @@ public class CharacterController : MonoBehaviour
 			{
 				PlayerAttributes.setMoving (false);
 			}
+			if (timer >= 0.3f)
+			{
+				isIdle = true;
+				gameObject.GetComponent<Animator>().enabled = false;
+			}
 
 			PlayerAttributes.setPosition(gameObject.transform.position);
 		}
 
 		public bool  isGrounded ()
 		{
-		Debug.DrawRay ( new Vector2(transform.position.x, transform.position.y - 0.9f), -Vector2.up * 0.25f, Color.blue, 0.05f);
+		Debug.DrawRay ( new Vector2(transform.position.x, transform.position.y - 1.49f), -Vector2.up * 0.25f, Color.blue, 0.05f);
 
-		RaycastHit2D hit = Physics2D.Raycast (new Vector2(transform.position.x, transform.position.y - 0.9f), -Vector2.up, 0.25f);
+		RaycastHit2D hit = Physics2D.Raycast (new Vector2(transform.position.x, transform.position.y - 1.49f), -Vector2.up, 0.25f);
 
 		if(hit.collider != null)
 		{
