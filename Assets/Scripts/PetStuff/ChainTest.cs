@@ -16,7 +16,7 @@ public class ChainTest : MonoBehaviour
 
 		for (int i = 0; i < 6; i++)
 		{
-			print ("index " + i + ", pet " + test.elementAt(i).getPetNum() + " front is " + test.getFrontVal());
+			print ("index " + i + ", pet " + test.elementAt(i).getpetID() + " front is " + test.getFrontVal());
 		}
 
 		//going to try to add another pet, should fail
@@ -28,10 +28,10 @@ public class ChainTest : MonoBehaviour
 
 		for (int i = 0; i < 6; i++)
 		{
-			print ("index " + i + ", pet " + test.elementAt(i).getPetNum() + " front is " + test.getFrontVal());
+			print ("index " + i + ", pet " + test.elementAt(i).getpetID() + " front is " + test.getFrontVal());
 		}
 
-		print("Pet " + test.removeFromChain().getPetNum() + " removed, front is now " + test.getFrontVal());
+		print("Pet " + test.removeFromChain().getpetID() + " removed, front is now " + test.getFrontVal());
 
 		for (int i = 0; i < 120; i++)
 		{

@@ -6,7 +6,7 @@ public enum PetType {generic, fire, waterOrIce, earth};
 public class Pet //: MonoBehaviour 
 {
 	PetType type;
-	int petNum;
+	int petID;
 	Vector3 position;
 
 	/*
@@ -19,12 +19,12 @@ public class Pet //: MonoBehaviour
 
 	public Pet(int num)
 	{
-		petNum = num;
+		petID = num;
 	}
 
 	public Pet(int num, PetType x)
 	{
-		petNum = num;
+		petID = num;
 		type = x;
 	}
 
@@ -42,9 +42,9 @@ public class Pet //: MonoBehaviour
 		return type;
 	}
 
-	public int getPetNum()
+	public int getpetID()
 	{
-		return petNum;
+		return petID;
 	}
 
 	public Vector3 getPosition()

@@ -63,7 +63,7 @@ public class PetChain //: MonoBehaviour
 	{
 		for (int i = 0; i < front; i++)
 		{
-			Debug.Log ("Pet: " + chain[i].getPetNum());
+			Debug.Log ("Pet: " + chain[i].getPetID());
 		}
 	}
 
@@ -88,7 +88,7 @@ public class PetChain //: MonoBehaviour
 	public Vector3 nextInLineDist(Pet curr)
 	{
 		int i;
-		i = chain.Find(curr);
+		i = findPet(curr);
 		
 		if (i == front - 1)
 		{
