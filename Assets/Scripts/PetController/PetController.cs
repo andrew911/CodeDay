@@ -67,7 +67,7 @@ public class PetController : MonoBehaviour
 		numPets++;
 		jumpVal = 20;
 		gameObject.layer = LayerStack.assign();
-
+		currPet.setInstanceID(gameObject.GetInstanceID());
 		PlayerAttributes.chain.addToChain(currPet);
 	}
 

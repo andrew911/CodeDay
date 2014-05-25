@@ -10,6 +10,7 @@ public class Pet //: MonoBehaviour
 	Vector3 position;
 	Direction direction;
 	bool discarded;
+	int instanceID;
 
 	/*
 	 * start constructors
@@ -64,6 +65,11 @@ public class Pet //: MonoBehaviour
 		return discarded;
 	}
 
+	public int getInstanceID()
+	{
+		return instanceID;
+	}
+
 	/*
 	 * End getter methods
 	 */
@@ -72,6 +78,11 @@ public class Pet //: MonoBehaviour
 	/*
 	 * Start setter methods
 	 */
+
+	public void setInstanceID(int x)
+	{
+		instanceID = x;
+	}
 
 	public void setPosition(Vector3 x)
 	{

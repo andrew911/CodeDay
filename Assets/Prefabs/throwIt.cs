@@ -1,4 +1,4 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class throwIt : MonoBehaviour {
@@ -13,8 +13,11 @@ public class throwIt : MonoBehaviour {
 
 
 		if(Input.GetKeyDown(KeyCode.F)){
-			if(
+			if(gameObject.GetInstanceID() == PlayerAttributes.chain.elementAt(PlayerAttributes.chain.getFrontVal()).getInstanceID())
+			{
+				gameObject.GetComponent<PetController>().enabled = false;
 				gameObject.rigidbody2D.AddForce( new Vector2(100, 20));
+			}
 
 			Pet temp;
 			temp = PlayerAttributes.chain.removeFromChain();
@@ -25,4 +28,4 @@ public class throwIt : MonoBehaviour {
 		}
 	
 	}
-}*/
+}

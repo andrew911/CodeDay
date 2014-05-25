@@ -101,11 +101,11 @@ public class CharacterController : MonoBehaviour
 
 			if (Input.GetKeyDown(KeyCode.F))
 			{
-//				Pet temp;
-//				temp = PlayerAttributes.chain.removeFromChain();
-//
-//				//throwIt.rigidbody2D.AddForce(500, 500);
-//				temp.setDiscarded (true);
+				Pet temp;
+				temp = PlayerAttributes.chain.removeFromChain();
+
+				throwIt.rigidbody2D.AddForce(new Vector2(500, 500));
+				temp.setDiscarded (true);
 			}
 
 			if (timer >= 0.3f)
