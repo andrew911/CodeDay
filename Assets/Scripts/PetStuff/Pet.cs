@@ -8,6 +8,7 @@ public class Pet //: MonoBehaviour
 	PetType type;
 	int petID;
 	Vector3 position;
+	Direction direction;
 
 	/*
 	 * start constructors
@@ -52,6 +53,11 @@ public class Pet //: MonoBehaviour
 		return position;
 	}
 
+	public Direction getDirection()
+	{
+		return direction;
+	}
+
 	/*
 	 * End getter methods
 	 */
@@ -64,6 +70,11 @@ public class Pet //: MonoBehaviour
 	public void setPosition(Vector3 x)
 	{
 		position = x;
+	}
+
+	public void setDirection(Direction x)
+	{
+		direction = x;
 	}
 
 	/*
