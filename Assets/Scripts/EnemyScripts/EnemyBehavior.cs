@@ -91,6 +91,11 @@ public class EnemyBehavior : MonoBehaviour {
 				spot = 1;
 			}
 		}
+
+		if (collision.gameObject.tag == "Player") 
+		{
+			PlayerAttributes.setHealth((PlayerAttributes.getHealth()) - 1);
+		}
 	}
 
 	public bool  isGrounded ()
